@@ -8,6 +8,7 @@ execute:
 
 ```{r}
 #| message: false
+#| warning: false
 
 library(tidyverse)
 library(tidymodels)
@@ -52,3 +53,31 @@ logistic_reg() |>
 logistic_reg() |> 
     fit(as.factor(call) ~ city+ethnicity, data = x) |> tidy(conf.int=TRUE)
 ```
+
+
+```{r}
+logistic_reg() |> 
+    fit(as.factor(call) ~ gender + city + ethnicity + quality + jobs + special, data = x) |> 
+    tidy(conf.int = TRUE)
+```
+
+
+```{r}
+logistic_reg() |> 
+    fit(as.factor(call) ~ gender + city + ethnicity + special, data = x) |> 
+    tidy(conf.int = TRUE)
+```
+
+This is my data generating mechanism. 
+
+$$
+\begin{equation}
+\begin{aligned}
+\text{logit}(\Pr(\text{call} = 1)) =\; & -2.75 
+\; - \; 0.13 \cdot \text{male} 
+\; - \; 0.46 \cdot \text{chicago} \\
+& + \; 0.45 \cdot \text{caucasian} 
+\; + \; 0.82 \cdot \text{special}
+\end{aligned}
+\end{equation}
+$$
