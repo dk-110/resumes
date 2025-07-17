@@ -40,3 +40,15 @@ honors: Did the resume mention some honors?
 holes: Does the resume have some employment holes?
 
 special: Does the resume mention some special skills? -->
+
+
+```{r}
+logistic_reg() |> 
+    fit(as.factor(call) ~ city, data = x) |> tidy(conf.int=TRUE)
+```
+
+
+```{r}
+logistic_reg() |> 
+    fit(as.factor(call) ~ city+ethnicity, data = x) |> tidy(conf.int=TRUE)
+```
